@@ -92,7 +92,7 @@ Also add the Surefire plugin to run tests:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/royal-brothers-automation.git
+   git clone https://github.com/agrawalpallavi/royal-brothers-automation.git
    cd royal-brothers-automation
    ```
 
