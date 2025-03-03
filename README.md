@@ -22,6 +22,18 @@ This project automates the process of searching for bike rentals on the Royal Br
 - Maven
 - Playwright for Java
 
+## Project Structure
+
+```
+royal-brothers-automation/
+├── src/
+│   ├── test/
+│   │   └── java/
+│   │       └── RoyalBrothersAutomationTest.java
+├── pom.xml
+└── README.md
+```
+
 ## Dependencies
 
 Add the following dependencies to your `pom.xml`:
