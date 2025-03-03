@@ -16,7 +16,7 @@ public class RoyalBrothersAutomation {
         System.out.println("Navigated to Royal Brothers website");
 
         // Select city dynamically
-        String cityToSearch = "Bangalore"; // Change as needed
+        String cityToSearch = "Bangalore";
         selectCity(page, cityToSearch);
 
         // Enter booking time interval
@@ -31,7 +31,6 @@ public class RoyalBrothersAutomation {
 
         // Collect and display bike details
         collectBikeDetails(page);
-
 
         // Close browser - only close after the steps above complete
         browser.close();
@@ -125,8 +124,8 @@ public class RoyalBrothersAutomation {
         
         // Extract the numeric part before "km"
         String cleaned = kmsText.trim();
-        if (cleaned.matches(".?(\\d+)\\s*km.")) {
-            return cleaned.replaceAll(".?(\\d+)\\s*km.", "$1 km");
+        if (cleaned.matches(".*?(\\d+)\\s*km.*")) {
+            return cleaned.replaceAll(".*?(\\d+)\\s*km.*", "$1 km");
         } else {
             // Try to extract just numbers if the pattern doesn't match
             cleaned = cleaned.replaceAll("[^0-9]", "");
