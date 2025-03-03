@@ -1,108 +1,107 @@
-# Royal Brothers Bike Rental Automation
+# Royal Brothers Automation
 
-This Java application automates the process of searching and comparing bike rentals on the [Royal Brothers](https://www.royalbrothers.com/) website using Playwright.
+A Java-based automation tool that uses Playwright to interact with the Royal Brothers website for searching and retrieving bike rental information.
 
-## Description
+## Overview
 
-This project automates the following tasks on the Royal Brothers website:
-- Navigating to the site
-- Selecting a city from available options
-- Setting booking dates and times
-- Performing a search for available bikes
-- Collecting and displaying bike details (model, price, included kilometers)
-- Sorting results by price for easy comparison
+This project automates the process of searching for bike rentals on the Royal Brothers website. It navigates to the site, selects a city, specifies booking dates and times, and retrieves a list of available bikes sorted by price.
+
+## Features
+
+- **City Selection**: Automatically selects a specified city from the available options
+- **Date & Time Setting**: Configures pickup and drop-off dates and times
+- **Results Collection**: Gathers details of all available bikes including:
+  - Model name
+  - Rental price
+  - Available kilometers
+- **Price Sorting**: Displays bikes sorted by price in ascending order
 
 ## Prerequisites
 
-- Java 11 or higher
-- Maven for dependency management
+- Java 8 or higher
+- Maven or Gradle
 - Playwright for Java
 
 ## Dependencies
 
-```xml
-<dependencies>
-    <dependency>
-        <groupId>com.microsoft.playwright</groupId>
-        <artifactId>playwright</artifactId>
-        <version>1.40.0</version>
-    </dependency>
-</dependencies>
-```
+- Microsoft Playwright (com.microsoft.playwright)
+- Java Time API (java.time)
 
 ## Installation
 
-1. Clone this repository:
-   ```
+1. Clone the repository:
+   ```bash
    git clone https://github.com/yourusername/royal-brothers-automation.git
    cd royal-brothers-automation
    ```
 
-2. Install Playwright browsers:
-   ```
-   mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install chromium"
+2. Install Playwright dependencies:
+   ```bash
+   mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install"
    ```
 
 3. Build the project:
-   ```
-   mvn clean compile
+   ```bash
+   mvn clean package
    ```
 
 ## Usage
 
-Run the application using Maven:
+1. Run the application:
+   ```bash
+   java -cp target/royal-brothers-automation-1.0-SNAPSHOT.jar RoyalBrothersAutomation
+   ```
 
+2. Customizing Parameters:
+   
+   You can modify these parameters in the code:
+   
+   - City selection:
+     ```java
+     String cityToSearch = "Bangalore"; // Change to your preferred city
+     ```
+   
+   - Booking dates and times:
+     ```java
+     page.fill("#pickup-date-other", formattedDate);   // Current date
+     page.fill("#dropoff-date-other", tomorrowDate);   // Tomorrow's date
+     page.fill("#pickup-time-other", "8:30 AM");       // Pickup time
+     page.fill("#dropoff-time-other", "6:00 PM");      // Drop-off time
+     ```
+
+## Output
+
+The program will print a table of bike rentals sorted by price, displaying:
+- Model name
+- Price (in Indian Rupees)
+- Available kilometers
+
+Example output:
 ```
-mvn exec:java -D exec.mainClass="RoyalBrothersAutomation"
+Bike Details (sorted by price in ascending order):
+----------------------------------------------
+Model Name                     Price           Available KMs   
+----------------------------------------------
+Honda Activa                   Rs.350.00       100 km         
+TVS Jupiter                    Rs.399.00       120 km         
+Royal Enfield Classic 350      Rs.1200.00      150 km         
 ```
-
-Or run the compiled class directly:
-
-```
-java -cp target/classes RoyalBrothersAutomation
-```
-
-When prompted, enter the city where you want to rent a bike (e.g., "Bangalore", "Agra", "Coorg").
-
-## Features
-
-1. **Dynamic City Selection**:
-   - Supports exact and partial matching of city names
-   - Displays all available cities
-   - Falls back to closest match if exact city isn't found
-
-2. **Automated Date and Time Setting**:
-   - Sets booking from current date to the next day
-   - Uses configurable pickup and drop-off times
-
-3. **Comprehensive Results**:
-   - Collects model name, rental price, and included kilometers
-   - Sorts results by price in ascending order
-   - Displays results in an easy-to-read table format
 
 ## How It Works
 
-1. The application launches a browser and navigates to the Royal Brothers website
-2. It identifies all available cities and attempts to select the user-specified city
-3. Booking dates and times are automatically set
-4. After searching, it extracts information about all available bikes
-5. Results are sorted by price and displayed in a formatted table
-
-## Project Structure
-
-- `RoyalBrothersAutomation.java`: Main class containing the automation logic
-- `BikeDetails`: Inner class to store and sort bike rental information
-
-## Customization
-
-- Modify the `setBookingTimeInterval()` method to change the default booking times
-- Adjust timeouts in `waitForSelector()` calls if you have slower internet connections
+1. The application launches a Chromium browser using Playwright
+2. Navigates to the Royal Brothers website
+3. Selects the specified city
+4. Sets booking date and time parameters
+5. Clicks the search button
+6. Waits for results to load
+7. Collects and processes bike details
+8. Displays results sorted by price
 
 ## Troubleshooting
 
-- If the city selection fails, check if the city name is spelled correctly or try a major city name
-- If elements are not being found, the website structure may have changed, requiring selector updates
-- For connection issues, increase the timeout values in the code
+- **Element Not Found**: If you encounter element selection issues, check if the website structure has changed and update the selectors accordingly.
+- **Timing Issues**: If the automation runs too fast for the website to respond, you may need to add additional wait conditions.
 
 ## License
 
@@ -111,4 +110,3 @@ When prompted, enter the city where you want to rent a bike (e.g., "Bangalore", 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
- 
