@@ -25,26 +25,26 @@ public class RoyalBrothersAutomationTest {
 
     @Test
     void testRoyalBrothersBooking() {
-        // Navigate to website
+        
         page.navigate("https://www.royalbrothers.com/");
         page.waitForLoadState(LoadState.DOMCONTENTLOADED);
         System.out.println("Navigated to Royal Brothers website");
 
-        // Select city
+       
         String cityToSearch = "Bangalore";
         selectCity(page, cityToSearch);
 
-        // Set booking interval
+       
         setBookingTimeInterval(page);
 
-        // Click search button
+        
         page.locator("//div[@id=\"booking-pc\"]//button[@type=\"submit\"][normalize-space()=\"Search\"]").click();
         System.out.println("Clicked on Search button");
 
-        // Wait for results
+       
         page.waitForLoadState(LoadState.NETWORKIDLE);
 
-        // Collect bike details
+       
         collectBikeDetails(page);
     }
 
