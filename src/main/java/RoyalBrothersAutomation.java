@@ -11,12 +11,12 @@ public class RoyalBrothersAutomation {
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         Page page = browser.newPage();
         
-        // Navigate to the website
+       
         page.navigate("https://www.royalbrothers.com/");
         System.out.println("Navigated to Royal Brothers website");
 
-        // Select city dynamically
-        String cityToSearch = "Bangalore"; // Change as needed
+        
+        String cityToSearch = "Bangalore"; 
         selectCity(page, cityToSearch);
 
         // Enter booking time interval
